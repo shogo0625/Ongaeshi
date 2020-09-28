@@ -15,7 +15,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">メモ（どんなお祝いをもらったとか、相手の好きなものとか）</label>
-                                <textarea class="form-control" id="description" name="description" rows="5">value="{{ old('description') }}"</textarea>
+                                <textarea class="form-control" id="description" name="description" rows="5">{{ old('description') }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="date">いつ</label>

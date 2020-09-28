@@ -5,13 +5,13 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">All the anniversaries</div>
+                <div class="card-header">恩返しリスト</div>
 
                 <div class="card-body">
                     <ul class="list-group">
                         @foreach($anniversaries as $anniversary)
                             <li class="list-group-item">
-                                {{ $anniversary->name() }}
+                                {{ $anniversary->title }}
                             </li>
                         @endforeach
                     </ul>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="mt-2">
-                <a class="btn btn-success btn-sm" href="/anniversary/create"><i class="fas fa-plus-circle"></i> Create New Anniv.</a>
+                <a class="btn btn-success btn-sm" href="/anniversary/create"><i class="fas fa-plus-circle"></i> 新しい恩返しリマインダーを登録</a>
             </div>
         </div>
     </div>

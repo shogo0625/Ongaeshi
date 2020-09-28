@@ -10,4 +10,13 @@ class Anniversary extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'description', 'date', 'reminder', 'user_id',
+    ];
 }

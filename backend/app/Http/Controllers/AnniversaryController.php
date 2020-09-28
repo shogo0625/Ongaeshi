@@ -43,10 +43,15 @@ class AnniversaryController extends Controller
     public function store(Request $request)
     {
         $anniversary = new Anniversary([
-            'title' => $request->title(),
-            'description' => $request->description(),
-            ''
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'reminder' => $request->reminder,
+            'user_id' => auth()->id(),
         ]);
+        $anniversary->save();
+
+        return $this->index();
     }
 
     /**
