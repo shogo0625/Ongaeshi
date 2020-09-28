@@ -11,20 +11,24 @@
                             @csrf
                             <div class="form-group">
                                 <label for="title">何の日</label>
-                                <input type="text" class="form-control" id="title" name="title" autofocus="true" value="{{ old('title') }}">
+                                <input type="text" class="form-control{{ $errors->has('title') ? ' border-danger' : '' }}" id="title" name="title" autofocus="true" value="{{ old('title') }}">
+                                <small class="form-text text-danger">{!! $errors->first('title') !!}</small>
                             </div>
                             <div class="form-group">
                                 <label for="description">メモ（どんなお祝いをもらったとか、相手の好きなものとか）</label>
-                                <textarea class="form-control" id="description" name="description" rows="5">{{ old('description') }}</textarea>
+                                <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" name="description" rows="5">{{ old('description') }}</textarea>
+                                <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                             </div>
                             <div class="form-group">
                                 <label for="date">いつ</label>
-                                <input type="date" class="form-control" id="date" name="date" min="{{ date('Y-m-d') }}">
+                                <input type="date" class="col-md-4 form-control{{ $errors->has('date') ? ' border-danger' : '' }}" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date') }}">
+                                <small class="form-text text-danger">{!! $errors->first('date') !!}</small>
                             </div>
                             <div class="form-row">
                                 <div class="col-auto">
                                     <label for="reminder">知らせてほしいとき</label>
-                                    <input type="number" class="form-control" id="reminder" name="reminder" min="0" value="{{ old('reminder') }}">
+                                    <input type="number" class="form-control{{ $errors->has('reminder') ? ' border-danger' : '' }}" id="reminder" name="reminder" min="0" value="{{ old('reminder') }}">
+                                    <small class="form-text text-danger">{!! $errors->first('reminder') !!}</small>
                                 </div>
                                 <div class="col-auto">
                                     <label for=""></label>

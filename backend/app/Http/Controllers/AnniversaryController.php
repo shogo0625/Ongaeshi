@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Anniversary;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateAnniversary;
 
 class AnniversaryController extends Controller
 {
@@ -40,7 +41,7 @@ class AnniversaryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateAnniversary $request)
     {
         $anniversary = new Anniversary([
             'title' => $request->title,
@@ -51,7 +52,9 @@ class AnniversaryController extends Controller
         ]);
         $anniversary->save();
 
-        return $this->index();
+        return $this->index()->with([
+            'message_success' => "<b>" . $anniversary->title . "</b> が恩返しリストへ追加されました。"
+        ]);
     }
 
     /**
