@@ -1,0 +1,27 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">All the anniversaries</div>
+
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach($anniversaries as $anniversary)
+                            <li class="list-group-item">
+                                {{ $anniversary->name() }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <a class="btn btn-success btn-sm" href="/anniversary/create"><i class="fas fa-plus-circle"></i> Create New Anniv.</a>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

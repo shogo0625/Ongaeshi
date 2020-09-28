@@ -14,7 +14,14 @@ class AnniversaryController extends Controller
      */
     public function index()
     {
-        //
+        $anniversaries = Anniversary::select()
+            ->where('user_id', auth()->id())
+            ->orderBy('updated_at', "DESC")
+            ->get();
+
+        return view('anniversary.index')->with([
+            'anniversaries' => $anniversaries,
+        ]);
     }
 
     /**
@@ -24,7 +31,7 @@ class AnniversaryController extends Controller
      */
     public function create()
     {
-        //
+        return view('anniversary.create');
     }
 
     /**
@@ -35,7 +42,11 @@ class AnniversaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $anniversary = new Anniversary([
+            'title' => $request->title(),
+            'description' => $request->description(),
+            ''
+        ]);
     }
 
     /**
