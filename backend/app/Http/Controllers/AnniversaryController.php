@@ -43,15 +43,16 @@ class AnniversaryController extends Controller
      */
     public function store(CreateAnniversary $request)
     {
+        $remindTime = $request->getRemindTime($request->date, $request->reminder, $request->unit);
+
         $anniversary = new Anniversary([
             'title' => $request->title,
             'description' => $request->description,
             'date' => $request->date,
-            'reminder' => $request->reminder,
+            'reminder' => $remindTime,
             'user_id' => auth()->id(),
         ]);
         $anniversary->save();
-
         return $this->index()->with([
             'message_success' => "<b>" . $anniversary->title . "</b> が恩返しリストへ追加されました。"
         ]);

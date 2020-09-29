@@ -17,9 +17,9 @@ class CreateAnniversariesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->dateTime('date');
-            $table->integer('reminder');
+            $table->dateTime('reminder');
             $table->timestamps();
 
             $table->foreign('user_id')

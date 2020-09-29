@@ -26,8 +26,17 @@ class CreateAnniversary extends FormRequest
         return [
             'title' => 'required | max:50',
             'description' => 'max:1000',
-            'date' => "required | min: {{ date('Y-m-d') }}",
-            'reminder' => 'required | min:1',
+            'date' => "required",
+            'reminder' => [
+                'required', 'min: 0',
+                function ($attributes, $value, $fail) {
+                    $inputData = $this->all();
+                    $remindTime = $this->getRemindTime($inputData['date'], $inputData['reminder'], $inputData['unit']);
+                    if ($remindTime <= date('Y-m-d H:m:s')) {
+                        $fail('リマインド希望日は現在時刻より後の時間にしてください。');
+                    }
+                }
+            ],
         ];
     }
 
@@ -39,5 +48,10 @@ class CreateAnniversary extends FormRequest
             'date' => '日付',
             'reminder' => '通知日',
         ];
+    }
+
+    public function getRemindTime($anniversary, $reminder, $unit)
+    {
+        return $unit === 'hours' ? date('Y-m-d H:m:s', strtotime($anniversary . "-${reminder} hour")) : date('Y-m-d H:m:s', strtotime($anniversary . "-${reminder} day"));
     }
 }
