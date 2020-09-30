@@ -66,7 +66,9 @@ class AnniversaryController extends Controller
      */
     public function show(Anniversary $anniversary)
     {
-        //
+        return view('anniversary.show')->with([
+            'anniversary' => $anniversary,
+        ]);
     }
 
     /**
