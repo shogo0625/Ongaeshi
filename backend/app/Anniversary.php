@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Anniversary extends Model
@@ -24,10 +25,12 @@ class Anniversary extends Model
 
     public function showRemindTimeForAnniversary()
     {
-        if ($diffInHours = $this->date->diffInHours($this->reminder) < 24) {
-            return $diffInHours . "時間後に通知";
+        if (now()->gt($this->reminder)) {
+            return "通知済";
+        } elseif (now()->diffInHours($this->reminder) < 24) {
+            return now()->diffInHours($this->reminder) . "時間後に通知";
         } else {
-            $diffInDays = $this->date->diffInDays($this->reminder);
+            $diffInDays = now()->diffInDays($this->reminder);
             return $diffInDays . "日後に通知";
         }
     }

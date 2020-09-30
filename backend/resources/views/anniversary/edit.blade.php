@@ -5,23 +5,24 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">恩返しリマインダー作成</div>
+                    <div class="card-header">恩返しリマインダー編集</div>
                     <div class="card-body">
-                        <form action="/anniversary" method="post">
+                        <form action="/anniversary/{{ $anniversary->id }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="form-group">
                                 <label for="title">何の日</label>
-                                <input type="text" class="form-control{{ $errors->has('title') ? ' border-danger' : '' }}" id="title" name="title" autofocus="true" value="{{ old('title') }}">
+                                <input type="text" class="form-control{{ $errors->has('title') ? ' border-danger' : '' }}" id="title" name="title" autofocus="true" value="{{ old('title', $anniversary->title) }}">
                                 <small class="form-text text-danger">{!! $errors->first('title') !!}</small>
                             </div>
                             <div class="form-group">
                                 <label for="description">メモ（どんなお祝いをもらったとか、相手の好きなものとか）</label>
-                                <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" name="description" rows="5">{{ old('description') }}</textarea>
+                                <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" name="description" rows="5">{{ old('description', $anniversary->description) }}</textarea>
                                 <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                             </div>
                             <div class="form-group">
                                 <label for="date">いつ</label>
-                                <input type="date" class="col-md-4 form-control{{ $errors->has('date') ? ' border-danger' : '' }}" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date') }}">
+                                <input type="date" class="col-md-4 form-control{{ $errors->has('date') ? ' border-danger' : '' }}" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date', $anniversary->date) }}">
                                 <small class="form-text text-danger">{!! $errors->first('date') !!}</small>
                             </div>
                             <div class="form-row">
@@ -40,7 +41,7 @@
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="恩返しリストへ登録">
                         </form>
-                        <a class="btn btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
+                        <a class="btn btn-primary float-right" href="/anniversary/{{ $anniversary->id }}"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
                     </div>
                 </div>
             </div>
