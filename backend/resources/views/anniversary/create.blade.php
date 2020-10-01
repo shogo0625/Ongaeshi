@@ -15,7 +15,7 @@
                                 <small class="form-text text-danger">{!! $errors->first('title') !!}</small>
                             </div>
                             <div class="form-group">
-                                <label for="description">メモ（どんなお祝いをもらったとか、相手の好きなものとか）</label>
+                                <label for="description">メモ（以前どんなお祝いをもらったとか、相手の好きなものとか）</label>
                                 <textarea class="form-control{{ $errors->has('description') ? ' border-danger' : '' }}" id="description" name="description" rows="5">{{ old('description') }}</textarea>
                                 <small class="form-text text-danger">{!! $errors->first('description') !!}</small>
                             </div>
@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-auto">
-                                    <label for="reminder">知らせてほしいとき</label>
+                                    <label for="reminder">知らせてほしいとき（通知不要の場合、未入力）</label>
                                     <input type="number" class="form-control{{ $errors->has('reminder') ? ' border-danger' : '' }}" id="reminder" name="reminder" min="0" value="{{ old('reminder') }}">
                                     <small class="form-text text-danger">{!! $errors->first('reminder') !!}</small>
                                 </div>

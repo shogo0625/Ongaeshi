@@ -19,7 +19,7 @@ class CreateAnniversariesTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->dateTime('date');
-            $table->dateTime('reminder');
+            $table->dateTime('reminder')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('user_id')

@@ -23,9 +23,12 @@ class Anniversary extends Model
 
     protected $dates = ['date', 'reminder'];
 
+    // 通知設定の有無・通知までの時間表示
     public function showRemindTimeForAnniversary()
     {
-        if (now()->gt($this->reminder)) {
+        if ($this->reminder === null) {
+            return "通知未設定";
+        } elseif (now()->gt($this->reminder)) {
             return "通知済";
         } elseif (now()->diffInHours($this->reminder) < 24) {
             return now()->diffInHours($this->reminder) . "時間後に通知";

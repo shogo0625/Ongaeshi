@@ -22,12 +22,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="date">いつ</label>
-                                <input type="date" class="col-md-4 form-control{{ $errors->has('date') ? ' border-danger' : '' }}" id="date" name="date" min="{{ date('Y-m-d') }}" value="{{ old('date', $anniversary->date) }}">
+                                <input type="date" class="col-md-4 form-control{{ $errors->has('date') ? ' border-danger' : '' }}" id="date" name="date" value="{{ old('date', $anniversary->date->format('Y-m-d')) }}">
                                 <small class="form-text text-danger">{!! $errors->first('date') !!}</small>
                             </div>
                             <div class="form-row">
                                 <div class="col-auto">
-                                    <label for="reminder">知らせてほしいとき</label>
+                                    <label for="reminder">知らせてほしいとき（通知不要の場合、未入力）</label>
                                     <input type="number" class="form-control{{ $errors->has('reminder') ? ' border-danger' : '' }}" id="reminder" name="reminder" min="0" value="{{ old('reminder') }}">
                                     <small class="form-text text-danger">{!! $errors->first('reminder') !!}</small>
                                 </div>
