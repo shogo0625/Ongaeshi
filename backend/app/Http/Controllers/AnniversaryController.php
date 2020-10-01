@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Anniversary;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateAnniversary;
+use App\Http\Requests\EditAnniversary;
 
 class AnniversaryController extends Controller
 {
@@ -91,9 +92,21 @@ class AnniversaryController extends Controller
      * @param  \App\Anniversary  $anniversary
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Anniversary $anniversary)
+    public function update(EditAnniversary $request, Anniversary $anniversary)
     {
-        //
+        $remindTime = $request->getRemindTime($request->date, $request->reminder, $request->unit);
+
+        $anniversary->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'date' => $request->date,
+            'reminder' => $remindTime,
+            'user_id' => auth()->id(),
+        ]);
+
+        return $this->index()->with([
+            'message_success' => "<b>" . $anniversary->title . "</b> が更新されました。"
+        ]);
     }
 
     /**

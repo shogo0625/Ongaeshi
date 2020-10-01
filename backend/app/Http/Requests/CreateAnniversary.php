@@ -34,7 +34,7 @@ class CreateAnniversary extends FormRequest
                     $remindTime = $this->getRemindTime($inputData['date'], $inputData['reminder'], $inputData['unit']);
                     $now = date('Y-m-d H:m:s');
                     if ($inputData['date'] <= $now && $inputData['reminder'] !== null) {
-                        $fail('過去の記録を編集する場合、通知の設定はできません。');
+                        $fail('過去の日付で保存する場合、通知の設定はできません。');
                     } elseif ($remindTime <= $now && $inputData['reminder'] !== null) {
                         $fail('リマインド希望日は現在時刻より後の時間にしてください。');
                     }
@@ -53,6 +53,7 @@ class CreateAnniversary extends FormRequest
         ];
     }
 
+    // reminderカラム form入力値をdatetime型に変換してreturn
     public function getRemindTime($anniversary, $reminder, $unit)
     {
         if ($reminder === null) {

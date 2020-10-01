@@ -39,7 +39,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <input class="btn btn-primary mt-4" type="submit" value="恩返しリストへ登録">
+                            <input class="btn btn-primary mt-4" type="submit" value="この内容で編集">
                         </form>
                         <a class="btn btn-primary float-right" href="/anniversary/{{ $anniversary->id }}"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
                     </div>
