@@ -16,7 +16,7 @@
                         <form class="float-right" style="display: inline" action="/anniversary/{{ $anniversary->id }}" method="post">
                             @csrf
                             @method("DELETE")
-                            <input class="btn btn-sm btn-outline-danger" type="submit" value="この予定を削除">
+                            <input class="btn btn-sm btn-outline-danger" type="submit" value="この予定を削除" onclick='return confirm("「{{ $anniversary->title }}」を削除してよろしいですか？")'>
                         </form>
                     </div>
                 </div>

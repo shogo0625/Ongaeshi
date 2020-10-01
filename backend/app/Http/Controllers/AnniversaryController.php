@@ -117,6 +117,10 @@ class AnniversaryController extends Controller
      */
     public function destroy(Anniversary $anniversary)
     {
-        //
+        $oldName = $anniversary->title;
+        $anniversary->delete();
+        return $this->index()->with([
+            'message_success' => "<b>" . $oldName . "</b> が削除されました。"
+        ]);
     }
 }
