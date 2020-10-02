@@ -4,12 +4,28 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
-            <div class="card">
-                <div class="card-header">恩返しリスト</div>
-
-                <div class="card-body">
+            <ul class="nav nav-pills nav-justified mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-future-tab" data-toggle="pill" href="#pills-future" role="tab" aria-controls="pills-future" aria-selected="true">未来の恩返し</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-past-tab" data-toggle="pill" href="#pills-past" role="tab" aria-controls="pills-past" aria-selected="false">過去の恩返し</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-future" role="tabpanel" aria-labelledby="pills-future-tab">
                     <ul class="list-group">
-                        @foreach($anniversaries as $anniversary)
+                        @foreach($future_anniversaries as $anniversary)
+                            <li class="list-group-item">
+                                <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
+                                <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="pills-past" role="tabpanel" aria-labelledby="pills-past-tab">
+                    <ul class="list-group">
+                        @foreach($past_anniversaries as $anniversary)
                             <li class="list-group-item">
                                 <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
                                 <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>

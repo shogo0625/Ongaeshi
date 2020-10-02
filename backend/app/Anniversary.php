@@ -33,8 +33,19 @@ class Anniversary extends Model
         } elseif (now()->diffInHours($this->reminder) < 24) {
             return now()->diffInHours($this->reminder) . "時間後に通知";
         } else {
-            $diffInDays = now()->diffInDays($this->reminder);
-            return $diffInDays . "日後に通知";
+            $diff_in_days = now()->diffInDays($this->reminder);
+            return $diff_in_days . "日後に通知";
         }
+    }
+
+    public static function getAnniversariesDependingOnTime($time)
+    {
+        $time === 'future' ? $symbol = '>' : $symbol = '<=';
+
+        return Anniversary::select()
+            ->where('user_id', auth()->id())
+            ->where('date', $symbol, now()->subDays(1)) // 当日のデータが過去分に入ってしまうのを防ぐため-1日
+            ->orderBy('date')
+            ->get();;
     }
 }

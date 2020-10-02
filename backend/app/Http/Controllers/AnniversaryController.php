@@ -16,13 +16,12 @@ class AnniversaryController extends Controller
      */
     public function index()
     {
-        $anniversaries = Anniversary::select()
-            ->where('user_id', auth()->id())
-            ->orderBy('updated_at', "DESC")
-            ->get();
+        $future_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future');
+        $past_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('past');
 
         return view('anniversary.index')->with([
-            'anniversaries' => $anniversaries,
+            'future_anniversaries' => $future_anniversaries,
+            'past_anniversaries' => $past_anniversaries,
         ]);
     }
 
@@ -44,13 +43,13 @@ class AnniversaryController extends Controller
      */
     public function store(CreateAnniversary $request)
     {
-        $remindTime = $request->getRemindTime($request->date, $request->reminder, $request->unit);
+        $remind_time = $request->getRemindTime($request->date, $request->reminder, $request->unit);
 
         $anniversary = new Anniversary([
             'title' => $request->title,
             'description' => $request->description,
             'date' => $request->date,
-            'reminder' => $remindTime,
+            'reminder' => $remind_time,
             'user_id' => auth()->id(),
         ]);
         $anniversary->save();
@@ -94,13 +93,13 @@ class AnniversaryController extends Controller
      */
     public function update(EditAnniversary $request, Anniversary $anniversary)
     {
-        $remindTime = $request->getRemindTime($request->date, $request->reminder, $request->unit);
+        $remind_time = $request->getRemindTime($request->date, $request->reminder, $request->unit);
 
         $anniversary->update([
             'title' => $request->title,
             'description' => $request->description,
             'date' => $request->date,
-            'reminder' => $remindTime,
+            'reminder' => $remind_time,
             'user_id' => auth()->id(),
         ]);
 
@@ -117,10 +116,10 @@ class AnniversaryController extends Controller
      */
     public function destroy(Anniversary $anniversary)
     {
-        $oldName = $anniversary->title;
+        $old_name = $anniversary->title;
         $anniversary->delete();
         return $this->index()->with([
-            'message_success' => "<b>" . $oldName . "</b> が削除されました。"
+            'message_success' => "<b>" . $old_name . "</b> が削除されました。"
         ]);
     }
 }
