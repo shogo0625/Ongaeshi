@@ -103,7 +103,7 @@ class AnniversaryController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return $this->index()->with([
+        return redirect('/anniversary')->with([
             'message_success' => "<b>" . $anniversary->title . "</b> が更新されました。"
         ]);
     }
@@ -118,7 +118,7 @@ class AnniversaryController extends Controller
     {
         $old_name = $anniversary->title;
         $anniversary->delete();
-        return $this->index()->with([
+        return redirect('/anniversary')->with([
             'message_success' => "<b>" . $old_name . "</b> が削除されました。"
         ]);
     }

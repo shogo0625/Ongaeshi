@@ -91,6 +91,14 @@
             </div>
             @endisset
 
+            @if(session('message_success'))
+            <div class="container">
+                <div class="alert alert-success" role="alert">
+                    {!! session('message_success') !!}
+                </div>
+            </div>
+            @endif
+
             {{-- @if($errors->any())
             <div class="container">
                 <div class="alert alert-danger" role="alert">
