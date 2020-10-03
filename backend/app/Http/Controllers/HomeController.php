@@ -24,10 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $anniversaries = Anniversary::select()
-            ->where('user_id', auth()->id())
-            ->orderBy('updated_at', "DESC")
-            ->get();
+        $anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future');
 
         return view('home')->with([
             'anniversaries' => $anniversaries,
