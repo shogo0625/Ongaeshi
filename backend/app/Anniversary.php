@@ -40,12 +40,18 @@ class Anniversary extends Model
 
     public static function getAnniversariesDependingOnTime($time)
     {
-        $time === 'future' ? $symbol = '>' : $symbol = '<=';
+        if ($time === 'future') {
+            $symbol = '>';
+            $order = 'ASC';
+        } else {
+            $symbol = '<=';
+            $order = 'DESC';
+        }
 
         return Anniversary::select()
             ->where('user_id', auth()->id())
             ->where('date', $symbol, now()->subDays(1)) // 当日のデータが過去分に入ってしまうのを防ぐため-1日
-            ->orderBy('date')
+            ->orderBy('date', $order)
             ->get();;
     }
 }
