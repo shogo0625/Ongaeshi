@@ -18,7 +18,7 @@ class Gift extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'content', 'position', 'image_path', 'user_id',
+        'title', 'content', 'user_position', 'image_path', 'user_id',
     ];
 
     protected $enumCasts = [

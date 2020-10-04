@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gift;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GiftController extends Controller
 {
@@ -14,7 +15,11 @@ class GiftController extends Controller
      */
     public function index()
     {
-        //
+        $gifts = Gift::all();
+
+        return view('/gift/index', [
+            'gifts' => $gifts,
+        ]);
     }
 
     /**
