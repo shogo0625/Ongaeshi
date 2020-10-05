@@ -51,7 +51,9 @@ class GiftController extends Controller
      */
     public function show(Gift $gift)
     {
-        //
+        return view('gift.show')->with([
+            'gift' => $gift,
+        ]);
     }
 
     /**

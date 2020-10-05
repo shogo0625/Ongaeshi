@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card">
-                    <div class="card-header">恩返しの予定</div>
+                    <div class="card-header">恩返しの詳細</div>
 
                     <div class="card-body">
                         <h3><span class="badge badge-primary">{{ $anniversary->date->format('Y年m月d日') }}</span></h3>
