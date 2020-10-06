@@ -14,7 +14,7 @@
                     <ul class="list-group">
                         @foreach($gifts as $gift)
                             <li class="list-group-item">
-                                <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈ったギフト' : 'もらったギフト' }}</span></h4>
+                                <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h4>
                                 <a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a>
                                 <p class="card-text">{{ $gift->content }}</p>
                                 {{-- image入れる --}}

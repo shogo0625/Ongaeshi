@@ -29,7 +29,7 @@ class GiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('gift.create');
     }
 
     /**
@@ -40,7 +40,23 @@ class GiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->image_path) {
+            $path = $request->image_path->storeAs('public/gift_images', now() . '_' . Auth::user()->id . '.jpg');
+        } else {
+            $path = null;
+        }
+
+        $gift = new Gift([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_position' => $request->user_position,
+            'image_path' => $path ? basename($path) : null,
+            'user_id' => auth()->id(),
+        ]);
+        $gift->save();
+        return redirect('/gift/' . $gift->id)->with([
+            'message_success' => "<b>" . $gift->title . "</b> が投稿されました。",
+        ]);
     }
 
     /**
