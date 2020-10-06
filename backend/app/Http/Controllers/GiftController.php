@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gift;
+use App\Http\Requests\CreateGift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,13 +39,9 @@ class GiftController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateGift $request)
     {
-        if ($request->image_path) {
-            $path = $request->image_path->storeAs('public/gift_images', now() . '_' . Auth::user()->id . '.jpg');
-        } else {
-            $path = null;
-        }
+        $path = $request->storeImagePath($request->image_path);
 
         $gift = new Gift([
             'title' => $request->title,

@@ -11,7 +11,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="title">タイトル</label>
-                                <input type="text" class="form-control{{ $errors->has('title') ? ' border-danger' : '' }}" id="title" name="title" autofocus="true" value="{{ old('title') }}">
+                                <input type="text" class="form-control{{ $errors->has('title') ? ' border-danger' : '' }}" id="title" name="title" autofocus="true" value="{{ old('title') }}" required>
                                 <small class="form-text text-danger">{!! $errors->first('title') !!}</small>
                             </div>
                             <div class="form-group">
