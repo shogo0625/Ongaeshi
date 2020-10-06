@@ -115,6 +115,10 @@ class GiftController extends Controller
      */
     public function destroy(Gift $gift)
     {
-        //
+        $old_name = $gift->title;
+        $gift->delete();
+        return redirect('/gift')->with([
+            'message_success' => "<b>" . $old_name . "</b> が削除されました。"
+        ]);
     }
 }
