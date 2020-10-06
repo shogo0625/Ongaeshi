@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gift;
 use App\Http\Requests\CreateGift;
+use App\Http\Requests\EditGift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +78,9 @@ class GiftController extends Controller
      */
     public function edit(Gift $gift)
     {
-        //
+        return view('gift.edit')->with([
+            'gift' => $gift,
+        ]);
     }
 
     /**
@@ -87,9 +90,21 @@ class GiftController extends Controller
      * @param  \App\Gift  $gift
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gift $gift)
+    public function update(EditGift $request, Gift $gift)
     {
-        //
+        $path = $request->storeImagePath($request->image_path);
+
+        $gift->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'user_position' => $request->user_position,
+            'image_path' => $path ? basename($path) : null,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect('/gift/' . $gift->id)->with([
+            'message_success' => "<b>" . $gift->title . "</b> が更新されました。",
+        ]);
     }
 
     /**
