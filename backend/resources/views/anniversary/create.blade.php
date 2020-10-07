@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">恩返しリマインダー作成</div>
+                    <div class="card-header text-center">恩返しリマインダー作成</div>
                     <div class="card-body">
                         <form action="/anniversary" method="post">
                             @csrf
@@ -40,7 +40,7 @@
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="恩返しリストへ登録">
                         </form>
-                        <a class="btn btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
+                        <a class="btn btn-sm btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
                     </div>
                 </div>
             </div>

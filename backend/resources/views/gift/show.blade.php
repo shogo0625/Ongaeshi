@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card">
-                    <div class="card-header">ギフトの詳細</div>
+                    <div class="card-header text-center">ギフトの詳細</div>
 
                     <div class="card-body">
                         <h3><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h3>
@@ -25,11 +25,9 @@
                         </div>
                     </div>
                 </div>
-                <!--
                 <div class="mt-2">
-                    <a class="btn btn-primary btn-sm" href="{{ URL::previous() }}"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
+                    <a class="btn btn-sm btn-primary float-right" href="/gift"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
                 </div>
-                -->
             </div>
         </div>
     </div>

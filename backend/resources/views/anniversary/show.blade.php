@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-11">
                 <div class="card">
-                    <div class="card-header">恩返しの詳細</div>
+                    <div class="card-header text-center">恩返しの詳細</div>
 
                     <div class="card-body">
                         <h3><span class="badge badge-primary">{{ $anniversary->date->format('Y年m月d日') }}</span></h3>
@@ -20,11 +20,9 @@
                         </form>
                     </div>
                 </div>
-                <!--
                 <div class="mt-2">
-                    <a class="btn btn-primary btn-sm" href="{{ URL::previous() }}"><i class="fas fa-arrow-circle-up"></i> Back to Overview</a>
+                    <a class="btn btn-sm btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
                 </div>
-                -->
             </div>
         </div>
     </div>

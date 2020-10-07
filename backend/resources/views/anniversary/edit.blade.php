@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">恩返しリマインダー編集</div>
+                    <div class="card-header text-center">恩返しリマインダー編集</div>
                     <div class="card-body">
                         <form action="/anniversary/{{ $anniversary->id }}" method="post">
                             @csrf
@@ -41,7 +41,7 @@
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="この内容で編集">
                         </form>
-                        <a class="btn btn-primary float-right" href="/anniversary/{{ $anniversary->id }}"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
+                        <a class="btn btn-sm btn-primary float-right" href="/anniversary/{{ $anniversary->id }}"><i class="fas fa-arrow-circle-up"></i> 詳細ページへ</a>
                     </div>
                 </div>
             </div>

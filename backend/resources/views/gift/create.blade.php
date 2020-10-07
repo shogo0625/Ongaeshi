@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">ギフト投稿</div>
+                    <div class="card-header text-center">ギフト投稿</div>
                     <div class="card-body">
                         <form action="/gift" method="post" enctype='multipart/form-data'>
                             @csrf
@@ -33,7 +33,7 @@
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="このギフトを投稿">
                         </form>
-                        <a class="btn btn-primary float-right" href="/gift"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
+                        <a class="btn btn-sm btn-primary float-right" href="/gift"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
                     </div>
                 </div>
             </div>

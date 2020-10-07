@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">ギフト編集</div>
+                    <div class="card-header text-center">ギフト編集</div>
                     <div class="card-body">
                         <form action="/gift/{{ $gift->id }}" method="post" enctype='multipart/form-data'>
                             @csrf
@@ -34,7 +34,7 @@
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="この内容で編集">
                         </form>
-                        <a class="btn btn-primary float-right" href="/gift/{{ $gift->id }}"><i class="fas fa-arrow-circle-up"></i> 戻る</a>
+                        <a class="btn btn-sm btn-primary float-right" href="/gift/{{ $gift->id }}"><i class="fas fa-arrow-circle-up"></i> 詳細ページへ</a>
                     </div>
                 </div>
             </div>

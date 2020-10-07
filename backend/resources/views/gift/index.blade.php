@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-11">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center">
                     みんなのギフト投稿
                     <a class="btn btn-success btn-sm float-right" style="display: inline" href="/gift/create"><i class="fas fa-plus-circle"></i> 新しいギフトを投稿</a>
                 </div>
