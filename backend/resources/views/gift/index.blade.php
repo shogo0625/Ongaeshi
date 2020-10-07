@@ -14,10 +14,12 @@
                     <ul class="list-group">
                         @foreach($gifts as $gift)
                             <li class="list-group-item">
+                                <a class="float-right" href="/user/{{ $gift->user->id }}">{{ $gift->user->name }}</a>
+                                {{-- user_image入れる --}}
                                 <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h4>
                                 <a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a>
                                 <p class="card-text">{{ $gift->content }}</p>
-                                {{-- image入れる --}}
+                                {{-- gift_image入れる --}}
                                 <span class="float-right">{{ $gift->created_at->format('Y/m/d H:m') }}</span>
                             </li>
                         @endforeach

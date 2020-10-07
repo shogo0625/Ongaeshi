@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Route::resource('anniversary', 'AnniversaryController');
 Route::resource('gift', 'GiftController');
+Route::resource('user', 'UserController');
 
 Auth::routes();
