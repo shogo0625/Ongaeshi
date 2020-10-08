@@ -11,14 +11,17 @@
                         <div class="float-right">
                             <span class="mt-3 mr-2">By : <a href="/user/{{ $gift->user->id }}">{{ $gift->user->name }}</a></span>
                             @if($gift->user->image_path !== null)
-                            <a href="/user/{{ $gift->user->id }}"><img src="{{ asset('storage/user_images/' . $gift->user->image_path) }}" width="60" height="60"></a>
+                            <a href="/user/{{ $gift->user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $gift->user->image_path) }}" width="60" height="60"></a>
                             @endif
                         </div>
                         <h3><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h3>
                         <h4 class="mt-4 card-title">{{ $gift->title }}</h4>
                         <p class="mt-3 card-text">{{$gift->content}}</p>
                         @if($gift->image_path !== null)
-                        <img src="{{ asset('storage/gift_images/' . $gift->image_path) }}" width="400" height="280">
+                        <a href="/storage/gift_images/{{$gift->image_path}}" data-lightbox="storage/gift_images/{{$gift->image_path}}" data-title="{{ $gift->title }}">
+                            <img src="{{ asset('storage/gift_images/' . $gift->image_path) }}" width="400" height="280">
+                        </a><br>
+                        <i class="fa fa-search-plus"></i> クリックして拡大
                         @endif
                         <div class="row mt-4">
                             <a class="btn btn-sm btn-light" href="/gift/{{ $gift->id }}/edit"><i class="fas fa-edit"></i> このギフトを編集</a>
