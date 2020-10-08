@@ -59,7 +59,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user.edit')->with([
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -71,7 +73,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'about_me' => 'max:100',
+            'image_path' => 'mimes:jpeg,jpg,bmp,png,gif',
+        ]);
+
+        $path = $request->image_path ? $request->image_path->storeAs('public/user_images', now() . '_' . auth()->id() . '.jpg') : null;
+
+        $user->update([
+            'about_me' => $request->about_me,
+            'image_path' => $path ? basename($path) : null,
+        ]);
+
+        return redirect('/user/' . $user->id)->with([
+            'message_success' => "ユーザープロフィールが更新されました。",
+        ]);
     }
 
     /**

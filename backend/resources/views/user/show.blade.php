@@ -7,9 +7,12 @@
                 <div class="card">
                     <div class="card-header text-center">ユーザーページ</div>
 
-                    <div class="card-body">
-                        <p class="mt-2">{{ $user->name }}</p>
-                        <p class="mt-2">{{ $user->about_me }}</p>
+                    <div class="card-body text-center">
+                        @if($user->image_path !== null)
+                        <img src="{{ asset('storage/user_images/' . $user->image_path) }}" width="180" height="180">
+                        @endif
+                        <h4 class="mt-2">{{ $user->name }}</h4>
+                        <p class="mt-4">{{ $user->about_me }}</p>
                     </div>
                 </div>
             </div>
