@@ -20,6 +20,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Gift');
     }
 
+    public function gift_comments()
+    {
+        return $this->hasMany('App\GiftComment');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

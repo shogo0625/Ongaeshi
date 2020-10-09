@@ -19,6 +19,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('anniversary', 'AnniversaryController');
 Route::resource('gift', 'GiftController');
 Route::resource('user', 'UserController');
+Route::resource('gift_comment', 'GiftCommentController', ['only' => ['store', 'destroy']]);
 
 Auth::routes();
 

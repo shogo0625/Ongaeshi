@@ -12,6 +12,11 @@ class Gift extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function gift_comments()
+    {
+        return $this->hasMany('App\GiftComment');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
