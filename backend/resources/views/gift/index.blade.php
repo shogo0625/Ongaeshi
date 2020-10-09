@@ -20,7 +20,7 @@
                                     @endif
                                 </div>
                                 <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h4>
-                                <a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a>
+                                <h5 class="mt-3"><a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a></h5>
                                 <p class="card-text">{{ $gift->content }}</p>
                                 @if($gift->image_path !== null)
                                 <a href="/storage/gift_images/{{$gift->image_path}}" data-lightbox="storage/gift_images/{{$gift->image_path}}" data-title="{{ $gift->title }}">

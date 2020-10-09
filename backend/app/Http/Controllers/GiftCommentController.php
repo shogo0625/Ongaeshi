@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\GiftComment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Gift;
 
 class GiftCommentController extends Controller
 {
@@ -33,9 +35,22 @@ class GiftCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Gift $gift, Request $request)
     {
-        //
+        $request->validate([
+            'comment' => 'required | max:200',
+        ]);
+
+        $gift_comment = new GiftComment([
+            'comment' => $request->comment,
+            'user_id' => auth()->id(),
+            'gift_id' => $gift->id,
+        ]);
+        $gift_comment->save();
+
+        return back()->with([
+            'message_success' => 'コメントを投稿しました。'
+        ]);
     }
 
     /**
@@ -78,8 +93,12 @@ class GiftCommentController extends Controller
      * @param  \App\GiftComment  $giftComment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(GiftComment $giftComment)
+    public function destroy(Gift $gift, GiftComment $giftComment)
     {
-        //
+        $giftComment->delete();
+
+        return back()->with([
+            'message_success' => 'コメントを削除しました。'
+        ]);
     }
 }

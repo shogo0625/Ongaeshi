@@ -15,4 +15,13 @@ class GiftComment extends Model
     {
         return $this->belongsTo('App\Gift');
     }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'comment', 'gift_id', 'user_id',
+    ];
 }

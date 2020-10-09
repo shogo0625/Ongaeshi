@@ -19,11 +19,11 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::resource('anniversary', 'AnniversaryController');
 Route::resource('gift', 'GiftController');
 Route::resource('user', 'UserController');
-Route::resource('gift_comment', 'GiftCommentController', ['only' => ['store', 'destroy']]);
+Route::resource('gift/{gift}/gift_comment', 'GiftCommentController', ['only' => ['store', 'destroy']]);
 
 Auth::routes();
 
 // Delete Images of Gift
-Route::get('/delete-images/gift/{gift_id}', 'GiftController@deleteImages')->name('gift.delete_images');
+Route::get('/delete-images/gift/{gift}', 'GiftController@deleteImages')->name('gift.delete_images');
 // Delete Images of User
-Route::get('/delete-images/user/{user_id}', 'UserController@deleteImages')->name('user.delete_images');
+Route::get('/delete-images/user/{user}', 'UserController@deleteImages')->name('user.delete_images');
