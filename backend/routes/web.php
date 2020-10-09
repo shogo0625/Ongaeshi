@@ -23,7 +23,7 @@ Route::resource('gift/{gift}/gift_comment', 'GiftCommentController', ['only' => 
 
 Auth::routes();
 
-// Delete Images of Gift
-Route::get('/delete-images/gift/{gift}', 'GiftController@deleteImages')->name('gift.delete_images');
-// Delete Images of User
-Route::get('/delete-images/user/{user}', 'UserController@deleteImages')->name('user.delete_images');
+Route::prefix('delete-images')->group(function () {
+    Route::get('gift/{gift}', 'GiftController@deleteImages')->name('gift.delete_images');
+    Route::get('user/{user}', 'UserController@deleteImages')->name('user.delete_images');
+});
