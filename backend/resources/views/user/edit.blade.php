@@ -27,7 +27,7 @@
                             <label for="image_path" class="col-md-3 col-form-label text-md-right">プロフィール画像</label>
                             <div class="col-md-7">
                                 <input id="image_path" type="file" class="form-control @error('image_path') is-invalid @enderror" name="image_path" value="{{ old('image_path') }}">
-                                <small class="form-text text-dark">変更がない場合は、今までの画像が適用されます</small>
+                                <small class="form-text text-dark">変更がない場合は、今までの画像が適用されます（元の画像を<a href="/delete-images/user/{{ $user->id }}" onclick='return confirm("元の画像を削除してよろしいですか？")'>リセット</a>）</small>
                                 @error('image_path')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

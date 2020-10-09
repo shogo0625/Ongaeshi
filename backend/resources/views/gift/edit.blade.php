@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="image_path">新しい画像</label>
-                                <small class="form-text text-dark">変更がない場合は、今までの画像が適用されます</small>
+                                <small class="form-text text-dark">変更がない場合は、今までの画像が適用されます（元の画像を<a href="/delete-images/gift/{{ $gift->id }}" onclick='return confirm("元の画像を削除してよろしいですか？")'>リセット</a>）</small>
                                 <input type="file" class="col-md-4 form-control{{ $errors->has('image_path') ? ' border-danger' : '' }}" id="image_path" name="image_path">
                                 <small class="form-text text-danger">{!! $errors->first('image_path') !!}</small>
                             </div>

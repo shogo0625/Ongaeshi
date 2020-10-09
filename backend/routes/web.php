@@ -21,3 +21,8 @@ Route::resource('gift', 'GiftController');
 Route::resource('user', 'UserController');
 
 Auth::routes();
+
+// Delete Images of Gift
+Route::get('/delete-images/gift/{gift_id}', 'GiftController@deleteImages')->name('gift.delete_images');
+// Delete Images of User
+Route::get('/delete-images/user/{user_id}', 'UserController@deleteImages')->name('user.delete_images');

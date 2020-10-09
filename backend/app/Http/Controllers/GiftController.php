@@ -125,9 +125,22 @@ class GiftController extends Controller
     {
         $old_name = $gift->title;
         $gift->delete();
-        Storage::delete('storage/gift_images/' . $gift->image_path);
+        Storage::delete('/public/gift_images/' . $gift->image_path);
         return redirect('/gift')->with([
             'message_success' => "<b>" . $old_name . "</b> が削除されました。"
+        ]);
+    }
+
+    public function deleteImages($gift_id)
+    {
+        $gift = Gift::find($gift_id);
+        if ($gift->image_path !== null) {
+            Storage::delete('/public/gift_images/' . $gift->image_path);
+            $gift->update(['image_path' => null]);
+        }
+
+        return back()->with([
+            'message_success' => "元の画像はリセットされました。"
         ]);
     }
 }

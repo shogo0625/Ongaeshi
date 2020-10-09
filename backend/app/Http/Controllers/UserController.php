@@ -108,4 +108,17 @@ class UserController extends Controller
     {
         //
     }
+
+    public function deleteImages($user_id)
+    {
+        $user = User::find($user_id);
+        if ($user->image_path !== null) {
+            Storage::delete('/public/user_images/' . $user->image_path);
+            $user->update(['image_path' => null]);
+        }
+
+        return back()->with([
+            'message_success' => "元の画像はリセットされました。"
+        ]);
+    }
 }
