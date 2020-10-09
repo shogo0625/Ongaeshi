@@ -40,9 +40,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    @if(count($gift->gift_comments) > 0)
-                        @foreach($gift->gift_comments as $gift_comment)
+                @if(count($gift->gift_comments) > 0)
+                    @foreach($gift->gift_comments as $gift_comment)
+                    <div class="card">
                         <div class="card-body">
                             <div class="float-right">
                                 <span>{{ $gift_comment->created_at->format('Y/m/d H:m') }}</span>
@@ -62,13 +62,15 @@
                             </form>
                             @endif
                         </div>
-                        @endforeach
-                    @else
+                    </div>
+                    @endforeach
+                @else
+                    <div class="card">
                         <div class="card-body">
                             <span class="text-secondary">コメントはまだありません。</span>
                         </div>
-                    @endif
-                </div>
+                    </div>
+                @endif
                 <div class="card">
                     <form action="/gift/{{ $gift->id }}/gift_comment" method="POST">
                         @csrf
