@@ -45,7 +45,7 @@ class CreateGift extends FormRequest
     public function storeImagePath($image_path)
     {
         if ($image_path) {
-            return $image_path->storeAs('public/gift_images', now() . '_' . Auth::user()->id . '.jpg');
+            return $image_path->storeAs('public/gift_images', date('YmdHms') . '_' . Auth::user()->id . '.jpg');
         } else {
             return null;
         }

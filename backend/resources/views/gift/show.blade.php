@@ -28,7 +28,7 @@
                             <form style="display: inline" action="/gift/{{ $gift->id }}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <input class="btn btn-sm btn-outline-danger" type="submit" value="このギフトを削除" onclick='return confirm("「{{ $gift->title }}」を削除してよろしいですか？")'>
+                                <input class="btn btn-sm btn-outline-danger ml-2" type="submit" value="このギフトを削除" onclick='return confirm("「{{ $gift->title }}」を削除してよろしいですか？")'>
                             </form>
                         </div>
                         <div class="row">

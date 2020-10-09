@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -78,13 +79,18 @@ class UserController extends Controller
             'image_path' => 'mimes:jpeg,jpg,bmp,png,gif',
         ]);
 
-        $original_image = $user->image_path;
-        $path = $request->image_path ? $request->image_path->storeAs('public/user_images', now() . '_' . auth()->id() . '.jpg') : null;
-        $new_path = ($path === null) ? $original_image : $path;
+        $original_path = $user->image_path;
+        $new_path = $request->image_path ? $request->image_path->storeAs('public/user_images', date('YmdHms') . '_' . auth()->id() . '.jpg') : null;
+        if ($new_path === null) {
+            $path = $original_path;
+        } else {
+            $path = $new_path;
+            Storage::delete('/public/user_images/' . $original_path);
+        }
 
         $user->update([
             'about_me' => $request->about_me,
-            'image_path' => $new_path ? basename($new_path) : null,
+            'image_path' => $path ? basename($path) : null,
         ]);
 
         return redirect('/user/' . $user->id)->with([

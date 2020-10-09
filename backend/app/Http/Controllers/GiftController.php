@@ -7,6 +7,7 @@ use App\Http\Requests\CreateGift;
 use App\Http\Requests\EditGift;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GiftController extends Controller
 {
@@ -92,15 +93,20 @@ class GiftController extends Controller
      */
     public function update(EditGift $request, Gift $gift)
     {
-        $original_image = $gift->image_path;
-        $path = $request->storeImagePath($request->image_path);
-        $new_path = ($path === null) ? $original_image : $path;
+        $original_path = $gift->image_path;
+        $new_path = $request->storeImagePath($request->image_path);
+        if ($new_path === null) {
+            $path = $original_path;
+        } else {
+            $path = $new_path;
+            Storage::delete('/public/gift_images/' . $original_path);
+        }
 
         $gift->update([
             'title' => $request->title,
             'content' => $request->content,
             'user_position' => $request->user_position,
-            'image_path' => $new_path ? basename($new_path) : null,
+            'image_path' => $path ? basename($path) : null,
             'user_id' => auth()->id(),
         ]);
 
@@ -119,6 +125,7 @@ class GiftController extends Controller
     {
         $old_name = $gift->title;
         $gift->delete();
+        Storage::delete('storage/gift_images/' . $gift->image_path);
         return redirect('/gift')->with([
             'message_success' => "<b>" . $old_name . "</b> が削除されました。"
         ]);
