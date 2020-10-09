@@ -74,15 +74,17 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'about_me' => 'max:100',
+            'about_me' => 'max:400',
             'image_path' => 'mimes:jpeg,jpg,bmp,png,gif',
         ]);
 
+        $original_image = $user->image_path;
         $path = $request->image_path ? $request->image_path->storeAs('public/user_images', now() . '_' . auth()->id() . '.jpg') : null;
+        $new_path = ($path === null) ? $original_image : $path;
 
         $user->update([
             'about_me' => $request->about_me,
-            'image_path' => $path ? basename($path) : null,
+            'image_path' => $new_path ? basename($new_path) : null,
         ]);
 
         return redirect('/user/' . $user->id)->with([

@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="image_path">画像</label>
-                                <input type="file" class="col-md-4 form-control{{ $errors->has('image_path') ? ' border-danger' : '' }}" id="image_path" name="image_path" value="{{ old('image_path') }}">
+                                <input type="file" class="col-md-4 form-control{{ $errors->has('image_path') ? ' border-danger' : '' }}" id="image_path" name="image_path" value="">
                                 <small class="form-text text-danger">{!! $errors->first('image_path') !!}</small>
                             </div>
                             <input class="btn btn-primary mt-4" type="submit" value="このギフトを投稿">

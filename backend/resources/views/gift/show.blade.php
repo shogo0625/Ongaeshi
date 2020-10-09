@@ -23,7 +23,7 @@
                         </a><br>
                         <i class="fa fa-search-plus"></i> クリックして拡大
                         @endif
-                        <div class="row mt-4">
+                        <div class="row mt-4 ml-1">
                             <a class="btn btn-sm btn-light" href="/gift/{{ $gift->id }}/edit"><i class="fas fa-edit"></i> このギフトを編集</a>
                             <form style="display: inline" action="/gift/{{ $gift->id }}" method="post">
                                 @csrf

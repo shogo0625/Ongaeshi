@@ -42,13 +42,13 @@ class GiftController extends Controller
      */
     public function store(CreateGift $request)
     {
-        $path = $request->storeImagePath($request->image_path);
+        $new_path = $request->storeImagePath($request->image_path);
 
         $gift = new Gift([
             'title' => $request->title,
             'content' => $request->content,
             'user_position' => $request->user_position,
-            'image_path' => $path ? basename($path) : null,
+            'image_path' => $new_path ? basename($new_path) : null,
             'user_id' => auth()->id(),
         ]);
         $gift->save();
@@ -92,13 +92,15 @@ class GiftController extends Controller
      */
     public function update(EditGift $request, Gift $gift)
     {
+        $original_image = $gift->image_path;
         $path = $request->storeImagePath($request->image_path);
+        $new_path = ($path === null) ? $original_image : $path;
 
         $gift->update([
             'title' => $request->title,
             'content' => $request->content,
             'user_position' => $request->user_position,
-            'image_path' => $path ? basename($path) : null,
+            'image_path' => $new_path ? basename($new_path) : null,
             'user_id' => auth()->id(),
         ]);
 
