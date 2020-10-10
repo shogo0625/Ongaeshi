@@ -34,7 +34,7 @@
                                     @foreach($user->gifts()->get() as $gift)
                                         <li class="list-group-item">
                                             <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h4>
-                                            <a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a>
+                                            <h5 class="mt-3"><a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a></h5>
                                             <p class="card-text">{{ $gift->content }}</p>
                                             @if($gift->image_path !== null)
                                             <a href="/storage/gift_images/{{$gift->image_path}}" data-lightbox="storage/gift_images/{{$gift->image_path}}" data-title="{{ $gift->title }}">
@@ -43,7 +43,22 @@
                                             <i class="fa fa-search-plus"></i> クリックして拡大
                                             @endif
                                             <div class="row">
-                                                <span class="offset-md-10">{{ $gift->created_at->format('Y/m/d H:m') }}</span>
+                                                <div class="offset-md-5 col-md-5 text-right">
+                                                    <span class="mr-3"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
+                                                    @if($gift->is_liked_by(Auth::id()))
+                                                    <form name="delete_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                                        @csrf
+                                                        @method("DELETE")
+                                                        <a href="javascript:delete_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</a>
+                                                    </form>
+                                                    @else
+                                                    <form name="create_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                                        @csrf
+                                                        <a href="javascript:create_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</a>
+                                                    </form>
+                                                    @endif
+                                                </div>
+                                                <span>{{ $gift->created_at->format('Y/m/d H:m') }}</span>
                                             </div>
                                         </li>
                                     @endforeach

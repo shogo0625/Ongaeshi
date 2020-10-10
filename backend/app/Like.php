@@ -22,6 +22,6 @@ class Like extends Model
      * @var array
      */
     protected $fillable = [
-        'comment', 'gift_id', 'user_id',
+        'gift_id', 'user_id',
     ];
 }

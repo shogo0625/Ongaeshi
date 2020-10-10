@@ -26,7 +26,7 @@
                         <i class="fa fa-search-plus"></i> クリックして拡大
                         @endif
                         @if($gift->user->id === auth()->id())
-                        <div class="row mt-4 ml-1">
+                        <div class="row mt-4 mb-3 ml-1">
                             <a class="btn btn-sm btn-light" href="/gift/{{ $gift->id }}/edit"><i class="fas fa-edit"></i> このギフトを編集</a>
                             <form style="display: inline" action="/gift/{{ $gift->id }}" method="post">
                                 @csrf
@@ -36,11 +36,26 @@
                         </div>
                         @endif
                         <div class="row">
-                            <span class="offset-md-10">{{ $gift->created_at->format('Y/m/d H:m') }}</span>
+                            <div class="offset-md-5 col-md-5 text-right">
+                                <span class="mr-3"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
+                                @if($gift->is_liked_by(Auth::id()))
+                                <form name="delete_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                    @csrf
+                                    @method("DELETE")
+                                    <a href="javascript:delete_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</a>
+                                </form>
+                                @else
+                                <form name="create_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                    @csrf
+                                    <a href="javascript:create_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</a>
+                                </form>
+                                @endif
+                            </div>
+                            <span>{{ $gift->created_at->format('Y/m/d H:m') }}</span>
                         </div>
                     </div>
                 </div>
-                @if(count($gift->gift_comments) > 0)
+                @if($gift->gift_comments->count() > 0)
                     @foreach($gift->gift_comments as $gift_comment)
                     <div class="card">
                         <div class="card-body">

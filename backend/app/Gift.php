@@ -19,7 +19,7 @@ class Gift extends Model
 
     public function likes()
     {
-        return $this->has_many('App\Like');
+        return $this->hasMany('App\Like');
     }
 
     /**
@@ -34,4 +34,9 @@ class Gift extends Model
     protected $enumCasts = [
         'user_status' => \App\Enums\UserPosition::class,
     ];
+
+    public function is_liked_by($user_id)
+    {
+        return $this->likes()->where('user_id', $user_id)->count() === 1;
+    }
 }

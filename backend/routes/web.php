@@ -28,5 +28,5 @@ Route::prefix('delete-images')->group(function () {
     Route::get('user/{user}', 'UserController@deleteImages')->name('user.delete_images');
 });
 
-Route::post('/gifts/{gift}/likes', 'LikeController@store')->name('like.store');
-Route::post('/gifts/{gift}/likes', 'LikeController@destroy')->name('like.destroy');
+Route::post('/gift/{gift}/like', 'LikeController@store')->name('like.store');
+Route::delete('/gift/{gift}/like', 'LikeController@destroy')->name('like.destroy');

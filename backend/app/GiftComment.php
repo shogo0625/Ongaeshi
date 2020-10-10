@@ -22,6 +22,6 @@ class GiftComment extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'gift_id',
+        'comment', 'gift_id', 'user_id',
     ];
 }
