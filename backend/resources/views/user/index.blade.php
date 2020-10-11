@@ -38,10 +38,6 @@
                     </ul>
                 </div>
             </div>
-            <div class="mt-2">
-                <a class="btn btn-success btn-sm" href="/anniversary/create"><i class="fas fa-plus-circle"></i> 新しい恩返しリマインダーを登録</a>
-                <a class="btn btn-sm btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
-            </div>
         </div>
     </div>
 </div>
