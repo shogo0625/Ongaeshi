@@ -32,15 +32,15 @@
                                     <div class="offset-md-5 col-md-5 text-right">
                                         <span class="mr-3"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
                                         @if($gift->is_liked_by(Auth::id()))
-                                        <form name="delete_like" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                        <form name="delete_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
                                             @csrf
                                             @method("DELETE")
-                                            <a href="javascript:delete_like.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</a>
+                                            <a href="javascript:delete_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</a>
                                         </form>
                                         @else
-                                        <form name="create_like" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                                        <form name="create_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
                                             @csrf
-                                            <a href="javascript:create_like.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</a>
+                                            <a href="javascript:create_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</a>
                                         </form>
                                         @endif
                                     </div>
