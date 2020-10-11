@@ -66,7 +66,7 @@
                             </div>
                             <div class="row">
                                 <span class="mt-2 mr-1">By : <a href="/user/{{ $gift_comment->user->id }}">{{ $gift_comment->user->name }}</a></span>
-                                @if($gift->user->image_path === null)
+                                @if($gift_comment->user->image_path === null)
                                 <a href="/user/{{ $gift_comment->user->id }}"><img src="{{ asset('images/user.png') }}" width="45" height="45"></a>
                                 @else
                                 <a href="/user/{{ $gift_comment->user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $gift_comment->user->image_path) }}" width="45" height="45"></a>

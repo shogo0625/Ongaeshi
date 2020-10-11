@@ -65,6 +65,11 @@ class User extends Authenticatable
         }
     }
 
+    public function getAllUsers($user_id)
+    {
+        return $this->where('id', '<>', $user_id)->get();
+    }
+
     /**
      * The attributes that are mass assignable.
      *

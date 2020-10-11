@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -15,6 +16,11 @@ class UserController extends Controller
      */
     public function index(User $user)
     {
+        $users = $user->getAllUsers(auth()->user()->id);
+
+        return view('user.index', [
+            'users' => $users,
+        ]);
     }
 
     /**
@@ -74,6 +80,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'about_me' => 'max:400',
             'image_path' => 'mimes:jpeg,jpg,bmp,png,gif',
         ]);
@@ -88,6 +96,8 @@ class UserController extends Controller
         }
 
         $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
             'about_me' => $request->about_me,
             'image_path' => $path ? basename($path) : null,
         ]);
