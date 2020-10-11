@@ -30,6 +30,41 @@ class User extends Authenticatable
         return $this->hasMany('App\Like');
     }
 
+    public function followings()
+    {
+        return $this->belongsToMany('App\User', 'user_follow', 'user_id', 'follow_id')->withTimestamps();
+    }
+
+    public function followers()
+    {
+        return $this->belongsToMany('App\User', 'user_follow', 'follow_id', 'user_id')->withTimestamps();
+    }
+
+    public function is_following($user_id)
+    {
+        return $this->followings()->where('follow_id', $user_id)->exists();
+    }
+
+    public function follow($user_id)
+    {
+        $existing = $this->is_following($user_id);
+        $myself = $this->id == $user_id;
+
+        if (!$existing && !$myself) {
+            $this->followings()->attach($user_id);
+        }
+    }
+
+    public function unfollow($user_id)
+    {
+        $existing = $this->is_following($user_id);
+        $myself = $this->id == $user_id;
+
+        if ($existing && !$myself) {
+            $this->followings()->detach($user_id);
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *

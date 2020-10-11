@@ -29,6 +29,11 @@ Route::prefix('delete-images')->group(function () {
 });
 
 Route::prefix('gift/{gift}')->group(function () {
-    Route::post('like', 'LikeController@store')->name('like.store');
-    Route::delete('unlike', 'LikeController@destroy')->name('like.destroy');
+    Route::post('like', 'LikeController@store')->name('like');
+    Route::delete('unlike', 'LikeController@destroy')->name('unlike');
+});
+
+Route::prefix('user/{user}')->group(function () {
+    Route::post('follow', 'UserFollowController@store')->name('follow');
+    Route::delete('unfollow', 'UserFollowController@destroy')->name('unfollow');
 });
