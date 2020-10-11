@@ -9,7 +9,9 @@
 
                     <div class="card-body">
                         <div class="text-center">
-                            @if($user->image_path !== null)
+                            @if($user->image_path === null)
+                            <img src="{{ asset('images/user.png') }}" width="180" height="180">
+                            @else
                             <a href="/storage/user_images/{{$user->image_path}}" data-lightbox="storage/user_images/{{$user->image_path}}" data-title="{{ $user->name }}">
                                 <img class="rounded" src="{{ asset('storage/user_images/' . $user->image_path) }}" width="180" height="180">
                             </a>

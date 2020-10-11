@@ -15,7 +15,9 @@
                             <li class="list-group-item">
                                 <div class="float-right">
                                     <span class="mt-2 mr-1">By : <a href="/user/{{ $gift->user->id }}">{{ $gift->user->name }}</a></span>
-                                    @if($gift->user->image_path !== null)
+                                    @if($gift->user->image_path === null)
+                                    <a href="/user/{{ $gift->user->id }}"><img src="{{ asset('images/user.png') }}" width="45" height="45"></a>
+                                    @else
                                     <a href="/user/{{ $gift->user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $gift->user->image_path) }}" width="45" height="45"></a>
                                     @endif
                                 </div>

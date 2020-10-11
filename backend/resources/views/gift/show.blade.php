@@ -11,7 +11,9 @@
                         <div class="float-right">
                             <h5>
                                 <span class="mt-3 mr-2">By : <a href="/user/{{ $gift->user->id }}">{{ $gift->user->name }}</a></span>
-                                @if($gift->user->image_path !== null)
+                                @if($gift->user->image_path === null)
+                                <a href="/user/{{ $gift->user->id }}"><img src="{{ asset('images/user.png') }}" width="60" height="60"></a>
+                                @else
                                 <a href="/user/{{ $gift->user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $gift->user->image_path) }}" width="60" height="60"></a>
                                 @endif
                             </h5>
@@ -64,7 +66,9 @@
                             </div>
                             <div class="row">
                                 <span class="mt-2 mr-1">By : <a href="/user/{{ $gift_comment->user->id }}">{{ $gift_comment->user->name }}</a></span>
-                                @if($gift_comment->user->image_path !== null)
+                                @if($gift->user->image_path === null)
+                                <a href="/user/{{ $gift_comment->user->id }}"><img src="{{ asset('images/user.png') }}" width="45" height="45"></a>
+                                @else
                                 <a href="/user/{{ $gift_comment->user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $gift_comment->user->image_path) }}" width="45" height="45"></a>
                                 @endif
                             </div>
