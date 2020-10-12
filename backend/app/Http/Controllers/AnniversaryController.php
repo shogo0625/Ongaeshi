@@ -16,8 +16,8 @@ class AnniversaryController extends Controller
      */
     public function index()
     {
-        $future_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future');
-        $past_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('past');
+        $future_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future', 10);
+        $past_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('past', 10);
 
         return view('anniversary.index')->with([
             'future_anniversaries' => $future_anniversaries,

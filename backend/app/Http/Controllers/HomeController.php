@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future');
+        $anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future', 5);
 
         return view('home')->with([
             'anniversaries' => $anniversaries,

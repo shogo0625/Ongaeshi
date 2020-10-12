@@ -52,8 +52,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $own_gifts = $user->getOwnGifts(10);
+
         return view('user.show')->with([
             'user' => $user,
+            'own_gifts' => $own_gifts,
         ]);
     }
 

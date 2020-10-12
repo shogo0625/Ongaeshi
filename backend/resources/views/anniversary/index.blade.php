@@ -17,21 +17,31 @@
                     <ul class="list-group">
                         @foreach($future_anniversaries as $anniversary)
                             <li class="list-group-item">
-                                <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
-                                <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
+                                <div class="my-1">
+                                    <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
+                                    <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
+                                </div>
                             </li>
                         @endforeach
                     </ul>
+                    <div class="mt-3">
+                        {{ $future_anniversaries->links() }}
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="pills-past" role="tabpanel" aria-labelledby="pills-past-tab">
                     <ul class="list-group">
                         @foreach($past_anniversaries as $anniversary)
                             <li class="list-group-item">
-                                <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
-                                <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
+                                <div class="my-1">
+                                    <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
+                                    <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
+                                </div>
                             </li>
                         @endforeach
                     </ul>
+                    <div class="mt-3">
+                        {{ $past_anniversaries->links() }}
+                    </div>
                 </div>
             </div>
 

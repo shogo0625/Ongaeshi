@@ -19,6 +19,7 @@
                                     @endif
                                     <a href="/user/{{ $user->id }}">{{ $user->name }}</a>
                                 </h5>
+                                @auth
                                 <div class="float-right mt-3">
                                     @if(Auth::user()->is_following($user->id))
                                     <form action="/user/{{ $user->id }}/unfollow" method="post">
@@ -33,6 +34,7 @@
                                     </form>
                                     @endif
                                 </div>
+                                @endauth
                             </li>
                         @endforeach
                     </ul>

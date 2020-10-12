@@ -38,7 +38,7 @@ class Anniversary extends Model
         }
     }
 
-    public static function getAnniversariesDependingOnTime($time)
+    public static function getAnniversariesDependingOnTime(String $time, Int $per_page)
     {
         if ($time === 'future') {
             $symbol = '>';
@@ -52,6 +52,6 @@ class Anniversary extends Model
             ->where('user_id', auth()->id())
             ->where('date', $symbol, now()->subDays(1)) // 当日のデータが過去分に入ってしまうのを防ぐため-1日
             ->orderBy('date', $order)
-            ->get();;
+            ->paginate($per_page);
     }
 }

@@ -38,19 +38,24 @@
                                 <a class="nav-link active" id="gift-tab" data-toggle="tab" href="#gift" role="tab" aria-controls="gift" aria-selected="true">ギフト</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                                <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">フォロー</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                                <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="false">フォロワー</a>
                             </li>
+                            @if($user->id === Auth::id())
+                            <li class="nav-item">
+                                <a class="nav-link" id="liked-tab" data-toggle="tab" href="#liked" role="tab" aria-controls="liked" aria-selected="false">いいねしたギフト</a>
+                            </li>
+                            @endif
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="gift" role="tabpanel" aria-labelledby="gift-tab">
-                                @if($user->gifts()->count() == 0)
+                                @if($own_gifts->count() == 0)
                                     <p class="m-4">まだギフト投稿はありません。</p>
                                 @else
                                     <ul class="list-group">
-                                        @foreach($user->gifts()->get() as $gift)
+                                        @foreach($own_gifts as $gift)
                                             <li class="list-group-item">
                                                 <h4><span class="badge badge-{{ $gift->user_position === 'sender' ? 'danger' : 'primary' }}">{{ $gift->user_position === 'sender' ? '贈る側のギフト' : 'もらう側のギフト' }}</span></h4>
                                                 <h5 class="mt-3"><a class="card-title" href="/gift/{{ $gift->id }}">{{ $gift->title }}</a></h5>
@@ -82,10 +87,22 @@
                                             </li>
                                         @endforeach
                                     </ul>
+                                    <div class="mt-3">
+                                        {{ $own_gifts->links() }}
+                                    </div>
                                 @endif
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                            <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
+
+                            </div>
+                            <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
+
+                            </div>
+                            @if($user->id === Auth::id())
+                            <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="liked-tab">
+
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

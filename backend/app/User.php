@@ -40,12 +40,12 @@ class User extends Authenticatable
         return $this->belongsToMany('App\User', 'user_follow', 'follow_id', 'user_id')->withTimestamps();
     }
 
-    public function is_following($user_id)
+    public function is_following(Int $user_id)
     {
         return $this->followings()->where('follow_id', $user_id)->exists();
     }
 
-    public function follow($user_id)
+    public function follow(Int $user_id)
     {
         $existing = $this->is_following($user_id);
         $myself = $this->id == $user_id;
@@ -55,7 +55,7 @@ class User extends Authenticatable
         }
     }
 
-    public function unfollow($user_id)
+    public function unfollow(Int $user_id)
     {
         $existing = $this->is_following($user_id);
         $myself = $this->id == $user_id;
@@ -65,9 +65,14 @@ class User extends Authenticatable
         }
     }
 
-    public function getAllUsers($user_id)
+    public function getAllUsers(Int $user_id)
     {
         return $this->where('id', '<>', $user_id)->get();
+    }
+
+    public function getOwnGifts(Int $per_page)
+    {
+        return $this->gifts()->orderBy('created_at', 'DESC')->paginate($per_page);
     }
 
     /**
