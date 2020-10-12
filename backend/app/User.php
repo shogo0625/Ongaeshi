@@ -75,6 +75,12 @@ class User extends Authenticatable
         return $this->gifts()->orderBy('created_at', 'DESC')->paginate($per_page);
     }
 
+    public function getLikedGifts(Int $per_page)
+    {
+        $likes_ids = Like::select('gift_id')->where('user_id', $this->id)->get();
+        return Gift::whereIn('id', $likes_ids)->orderBy('created_at', 'DESC')->paginate($per_page);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

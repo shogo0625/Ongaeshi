@@ -19,22 +19,22 @@
             <i class="fa fa-search-plus"></i> クリックして拡大
             @endif
             <div class="row">
-                <div class="offset-md-5 col-md-5 text-right">
-                    <span class="mr-3"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
+                <div class="offset-md-4 col-md-6 text-right">
+                    <span class="mr-1"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
                     @if($gift->is_liked_by(Auth::id()))
-                    <form name="delete_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/unlike" method="post">
+                    <form style="display: inline" action="/gift/{{ $gift->id }}/unlike" method="post">
                         @csrf
                         @method("DELETE")
-                        <a href="javascript:delete_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</a>
+                        <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</button>
                     </form>
                     @else
-                    <form name="create_like_{{ $gift->id }}" style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
+                    <form style="display: inline" action="/gift/{{ $gift->id }}/like" method="post">
                         @csrf
-                        <a href="javascript:create_like_{{ $gift->id }}.submit()" class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</a>
+                        <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</button>
                     </form>
                     @endif
                 </div>
-                <span>{{ $gift->created_at->format('Y/m/d H:m') }}</span>
+                <span class="mt-2">{{ $gift->created_at->format('Y/m/d H:m') }}</span>
             </div>
         </li>
     @endforeach

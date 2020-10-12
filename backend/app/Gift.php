@@ -42,6 +42,6 @@ class Gift extends Model
 
     public function getAllGifts()
     {
-        return Gift::select()->orderBy('created_at', 'DESC')->paginate(10);
+        return Gift::orderBy('created_at', 'DESC')->paginate(10);
     }
 }

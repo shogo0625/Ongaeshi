@@ -52,7 +52,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="gift" role="tabpanel" aria-labelledby="gift-tab">
                                 @if($own_gifts->count() == 0)
-                                    <p class="m-4">まだギフト投稿はありません。</p>
+                                    <p class="m-4">あなたのギフト投稿はありません。</p>
                                 @else
                                     @include('gift.gift_list', ['gifts' => $own_gifts])
                                     <div class="mt-3">
@@ -68,7 +68,14 @@
                             </div>
                             @if($user->id === Auth::id())
                             <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="liked-tab">
-
+                                @if($liked_gifts->count() == 0)
+                                    <p class="m-4">いいねしたギフト投稿はありません。</p>
+                                @else
+                                    @include('gift.gift_list', ['gifts' => $liked_gifts])
+                                    <div class="mt-3">
+                                        {{ $liked_gifts->links() }}
+                                    </div>
+                                @endif
                             </div>
                             @endif
                         </div>
