@@ -3,7 +3,7 @@
         <li class="list-group-item">
             <h5 style="display: inline">
                 @if($user->image_path === null)
-                <a href="/user/{{ $user->id }}"><img src="{{ asset('images/user.png') }}" width="65" height="65"></a>
+                <a href="/user/{{ $user->id }}"><img class="rounded" src="{{ asset('images/user.png') }}" width="65" height="65"></a>
                 @else
                 <a href="/user/{{ $user->id }}"><img class="rounded" src="{{ asset('storage/user_images/' . $user->image_path) }}" width="65" height="65"></a>
                 @endif
@@ -17,7 +17,7 @@
                     @method("DELETE")
                     <button type="submit" class="btn btn-outline-danger">フォロー解除</button>
                 </form>
-                @else
+                @elseif($user->id !== Auth::id())
                 <form action="/user/{{ $user->id }}/follow" method="post">
                     @csrf
                     <button type="submit" class="btn btn-primary">フォローする</button>

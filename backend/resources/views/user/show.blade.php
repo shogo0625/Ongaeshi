@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <div class="text-center">
                             @if($user->image_path === null)
-                            <img src="{{ asset('images/user.png') }}" width="180" height="180">
+                            <img class="rounded" src="{{ asset('images/user.png') }}" width="180" height="180">
                             @else
                             <a href="/storage/user_images/{{$user->image_path}}" data-lightbox="storage/user_images/{{$user->image_path}}" data-title="{{ $user->name }}">
                                 <img class="rounded" src="{{ asset('storage/user_images/' . $user->image_path) }}" width="180" height="180">
@@ -52,7 +52,7 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="gift" role="tabpanel" aria-labelledby="gift-tab">
                                 @if($own_gifts->count() == 0)
-                                    <p class="m-4">あなたのギフト投稿はありません。</p>
+                                    <p class="m-4">ギフト投稿はまだありません。</p>
                                 @else
                                     @include('gift.gift_list', ['gifts' => $own_gifts])
                                     <div class="mt-3">
@@ -61,10 +61,24 @@
                                 @endif
                             </div>
                             <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
-
+                                @if($following_users->count() == 0)
+                                    <p class="m-4">フォローしているユーザーはいません。</p>
+                                @else
+                                    @include('user.user_list', ['users' => $following_users])
+                                    <div class="mt-3">
+                                        {{ $following_users->links() }}
+                                    </div>
+                                @endif
                             </div>
                             <div class="tab-pane fade" id="follower" role="tabpanel" aria-labelledby="follower-tab">
-
+                                @if($follower_users->count() == 0)
+                                    <p class="m-4">フォローされているユーザーはいません。</p>
+                                @else
+                                    @include('user.user_list', ['users' => $follower_users])
+                                    <div class="mt-3">
+                                        {{ $follower_users->links() }}
+                                    </div>
+                                @endif
                             </div>
                             @if($user->id === Auth::id())
                             <div class="tab-pane fade" id="liked" role="tabpanel" aria-labelledby="liked-tab">

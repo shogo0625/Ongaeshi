@@ -54,11 +54,15 @@ class UserController extends Controller
     {
         $own_gifts = $user->getOwnGifts(10);
         $liked_gifts = $user->getLikedGifts(10);
+        $following_users = $user->getFollowings();
+        $follower_users = $user->getFollowers();
 
         return view('user.show')->with([
             'user' => $user,
             'own_gifts' => $own_gifts,
             'liked_gifts' => $liked_gifts,
+            'following_users' => $following_users,
+            'follower_users' => $follower_users,
         ]);
     }
 

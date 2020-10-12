@@ -77,8 +77,31 @@ class User extends Authenticatable
 
     public function getLikedGifts(Int $per_page)
     {
-        $likes_ids = Like::select('gift_id')->where('user_id', $this->id)->get();
-        return Gift::whereIn('id', $likes_ids)->orderBy('created_at', 'DESC')->paginate($per_page);
+        return Gift::select('gifts.*')
+            ->join('likes', 'likes.gift_id', '=', 'gifts.id')
+            ->where('likes.user_id', $this->id)
+            ->orderBy('gifts.created_at', 'DESC')
+            ->paginate($per_page);
+        // $like_ids = Like::select('gift_id')->where('user_id', $this->id)->get();
+        // return Gift::whereIn('id', $like_ids)->orderBy('created_at', 'DESC')->paginate($per_page);
+    }
+
+    public function getFollowings()
+    {
+        return User::select('users.*')
+            ->join('user_follow', 'user_follow.follow_id', '=', 'users.id')
+            ->where('user_follow.user_id', $this->id)
+            ->orderBy('user_follow.created_at', 'DESC')
+            ->paginate(10);
+    }
+
+    public function getFollowers()
+    {
+        return User::select('users.*')
+            ->join('user_follow', 'user_follow.user_id', '=', 'users.id')
+            ->where('user_follow.follow_id', $this->id)
+            ->orderBy('user_follow.created_at', 'DESC')
+            ->paginate(10);
     }
 
     /**
