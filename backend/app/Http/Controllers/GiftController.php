@@ -16,9 +16,9 @@ class GiftController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Gift $gift)
     {
-        $gifts = Gift::all();
+        $gifts = $gift->getAllGifts();
 
         return view('/gift/index', [
             'gifts' => $gifts,

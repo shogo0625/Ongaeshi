@@ -39,4 +39,9 @@ class Gift extends Model
     {
         return $this->likes()->where('user_id', $user_id)->count() === 1;
     }
+
+    public function getAllGifts()
+    {
+        return Gift::select()->orderBy('created_at', 'DESC')->paginate(10);
+    }
 }
