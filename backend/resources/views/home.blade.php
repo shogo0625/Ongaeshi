@@ -8,7 +8,13 @@
                 <div class="card-header text-center">直近の恩返し予定</div>
 
                 <div class="card-body">
-                    @include('anniversary.anniversary_list', ['anniversaries' => $anniversaries])
+                    @if($anniversaries->count() == 0)
+                    <div class="list-group">
+                        <span class="m-2">登録されている未来の恩返しリマインダーはありません。</span>
+                    </div>
+                    @else
+                        @include('anniversary.anniversary_list', ['anniversaries' => $anniversaries])
+                    @endif
                 </div>
             </div>
             <div class="mt-2">
