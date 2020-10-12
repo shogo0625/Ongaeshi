@@ -8,14 +8,7 @@
                 <div class="card-header text-center">直近の恩返し予定</div>
 
                 <div class="card-body">
-                    <ul class="list-group">
-                        @foreach($anniversaries as $anniversary)
-                            <li class="list-group-item">
-                                <a href="/anniversary/{{ $anniversary->id }}">{{ $anniversary->title }}</a>
-                                <span class="float-right">{{ $anniversary->date->format('Y年m月d日') }}（{{ $anniversary->showRemindTimeForAnniversary() }}）</span>
-                            </li>
-                        @endforeach
-                    </ul>
+                    @include('anniversary.anniversary_list', ['anniversaries' => $anniversaries])
                 </div>
             </div>
             <div class="mt-2">
