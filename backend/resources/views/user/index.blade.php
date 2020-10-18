@@ -8,9 +8,11 @@
                 <div class="card-header text-center">ユーザー一覧</div>
 
                 <div class="card-body">
-                    @include('user.user_list', ['users' => $users])
-                    <div class="mt-3">
-                        {{ $users->links() }}
+                    <div class="infinite-scroll">
+                        @include('user.user_list', ['users' => $users])
+                        <div class="mt-2">
+                            {{ $users->links("vendor/pagination/default") }}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@
                                 </div>
                             @else
                                 @include('anniversary.anniversary_list', ['anniversaries' => $future_anniversaries])
-                                <div class="mt-3">
+                                <div class="mt-2">
                                     {{ $future_anniversaries->links() }}
                                 </div>
                             @endif
@@ -34,7 +34,7 @@
                                 </div>
                             @else
                                 @include('anniversary.anniversary_list', ['anniversaries' => $past_anniversaries])
-                                <div class="mt-3">
+                                <div class="mt-2 pagination-2">
                                     {{ $past_anniversaries->links() }}
                                 </div>
                             @endif

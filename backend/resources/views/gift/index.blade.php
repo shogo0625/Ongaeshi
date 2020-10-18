@@ -10,9 +10,11 @@
                 </div>
 
                 <div class="card-body">
-                    @include('gift.gift_list', ['gifts' => $gifts])
-                    <div class="mt-3">
-                        {{ $gifts->links() }}
+                    <div class="infinite-scroll">
+                        @include('gift.gift_list', ['gifts' => $gifts])
+                        <div class="mt-2">
+                            {{ $gifts->links("vendor/pagination/default") }}
+                        </div>
                     </div>
                 </div>
             </div>

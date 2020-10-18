@@ -20,9 +20,7 @@ class GiftController extends Controller
     {
         $gifts = $gift->getAllGifts();
 
-        return view('/gift/index', [
-            'gifts' => $gifts,
-        ]);
+        return view('/gift/index', compact('gifts'));
     }
 
     /**

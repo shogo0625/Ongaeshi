@@ -16,13 +16,10 @@ class AnniversaryController extends Controller
      */
     public function index()
     {
-        $future_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future', 10);
-        $past_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('past', 10);
+        $future_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('future', 20);
+        $past_anniversaries = \App\Anniversary::getAnniversariesDependingOnTime('past', 20);
 
-        return view('anniversary.index')->with([
-            'future_anniversaries' => $future_anniversaries,
-            'past_anniversaries' => $past_anniversaries,
-        ]);
+        return view('anniversary.index', compact('future_anniversaries', 'past_anniversaries'));
     }
 
     /**

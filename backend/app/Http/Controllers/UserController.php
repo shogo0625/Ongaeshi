@@ -18,9 +18,7 @@ class UserController extends Controller
     {
         $users = $user->getAllUsers(auth()->user()->id);
 
-        return view('user.index', [
-            'users' => $users,
-        ]);
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -52,20 +50,13 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        $own_gifts = $user->getOwnGifts(10);
-        $liked_gifts = $user->getLikedGifts(10);
+        $own_gifts = $user->getOwnGifts(20);
+        $liked_gifts = $user->getLikedGifts(20);
         $following_users = $user->getFollowings();
         $follower_users = $user->getFollowers();
 
-        return view('user.show')->with([
-            'user' => $user,
-            'own_gifts' => $own_gifts,
-            'liked_gifts' => $liked_gifts,
-            'following_users' => $following_users,
-            'follower_users' => $follower_users,
-        ]);
+        return view('user.show', compact('user', 'own_gifts', 'liked_gifts', 'following_users', 'follower_users'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -74,9 +65,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('user.edit')->with([
-            'user' => $user,
-        ]);
+        return view('user.edit', compact('user'));
     }
 
     /**

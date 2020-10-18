@@ -54,10 +54,10 @@
                                 @if($own_gifts->count() == 0)
                                     <p class="m-4">ギフト投稿はまだありません。</p>
                                 @else
-                                    @include('gift.gift_list', ['gifts' => $own_gifts])
-                                    <div class="mt-3">
-                                        {{ $own_gifts->links() }}
-                                    </div>
+                                     @include('gift.gift_list', ['gifts' => $own_gifts])
+                                     <div class="mt-2">
+                                         {{ $own_gifts->links() }}
+                                     </div>
                                 @endif
                             </div>
                             <div class="tab-pane fade" id="following" role="tabpanel" aria-labelledby="following-tab">
@@ -65,7 +65,7 @@
                                     <p class="m-4">フォローしているユーザーはいません。</p>
                                 @else
                                     @include('user.user_list', ['users' => $following_users])
-                                    <div class="mt-3">
+                                    <div class="mt-2">
                                         {{ $following_users->links() }}
                                     </div>
                                 @endif
@@ -75,7 +75,7 @@
                                     <p class="m-4">フォローされているユーザーはいません。</p>
                                 @else
                                     @include('user.user_list', ['users' => $follower_users])
-                                    <div class="mt-3">
+                                    <div class="mt-2">
                                         {{ $follower_users->links() }}
                                     </div>
                                 @endif
@@ -86,7 +86,7 @@
                                     <p class="m-4">いいねしたギフト投稿はありません。</p>
                                 @else
                                     @include('gift.gift_list', ['gifts' => $liked_gifts])
-                                    <div class="mt-3">
+                                    <div class="mt-2">
                                         {{ $liked_gifts->links() }}
                                     </div>
                                 @endif

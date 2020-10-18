@@ -6,6 +6,9 @@
 
 require('./bootstrap');
 require('./custom');
+require('./infinite-scroll.pkgd.min');
+require('./jquery.jscroll.min');
+require('./jquery.min');
 
 window.Vue = require('vue');
 

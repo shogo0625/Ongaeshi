@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function getAllUsers(Int $user_id)
     {
-        return $this->where('id', '<>', $user_id)->orderBy('updated_at', 'DESC')->paginate(15);
+        return $this->where('id', '<>', $user_id)->orderBy('updated_at', 'DESC')->paginate(20);
     }
 
     public function getOwnGifts(Int $per_page)

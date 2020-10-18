@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
+        "infinite-scroll": "^3.0.6",
         "lightbox2": "^2.11.3"
     }
 }
