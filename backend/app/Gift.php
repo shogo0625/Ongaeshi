@@ -40,8 +40,8 @@ class Gift extends Model
         return $this->likes()->where('user_id', $user_id)->count() === 1;
     }
 
-    public function getAllGifts()
+    public function getOrderedGifts()
     {
-        return Gift::orderBy('created_at', 'DESC')->paginate(20);
+        return $this->orderBy('created_at', 'DESC')->paginate(20);
     }
 }

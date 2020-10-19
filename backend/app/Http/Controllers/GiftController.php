@@ -16,11 +16,23 @@ class GiftController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Gift $gift)
+    public function index(Request $request, Gift $gift)
     {
-        $gifts = $gift->getAllGifts();
+        $keyword = $request->keyword;
+        $genre = $request->genre;
 
-        return view('/gift/index', compact('gifts'));
+        $query = Gift::query();
+        if (!empty($keyword)) {
+            $query->where('title', 'LIKE', "%{$keyword}%")
+                ->orWhere('content', 'LIKE', "%{$keyword}%");
+        }
+        if (!empty($genre)) {
+            $query->where('user_position', '==', $genre);
+        }
+
+        $gifts = $query->get()->getOrderedGifts();
+
+        return view('/gift/index', compact('gifts', 'keyword', 'genre'));
     }
 
     /**
