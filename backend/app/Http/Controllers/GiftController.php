@@ -30,7 +30,11 @@ class GiftController extends Controller
             $query->where('user_position', '==', $genre);
         }
 
-        $gifts = $query->get()->getOrderedGifts();
+        if (empty($keyword) && empty($genre)) {
+            $gifts = $gift->getOrderedGifts();
+        } else {
+            $gifts = $query->get()->orderBy('created_at', 'DESC')->paginate(20);
+        }
 
         return view('/gift/index', compact('gifts', 'keyword', 'genre'));
     }
