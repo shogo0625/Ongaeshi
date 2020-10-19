@@ -2,10 +2,24 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center mb-3">
         <div class="col-md-11">
             <form action="{{ url('/gift') }}" method="GET">
-                <input type="text" name="keyword" value="{{ $keyword }}">
+                <div class="form-row">
+                    <div class="col-md-7">
+                        <input class="form-control" type="text" name="keyword" id="keyword" value="{{ $keyword }}" placeholder="キーワード検索">
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control" name="genre" id="genre">
+                            <option value="">全てのジャンル</option>
+                            <option value="sender">贈る側のギフト</option>
+                            <option value="receiver">もらう側のギフト</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="btn btn-success btn-block" type="submit" value="検索">
+                    </div>
+                </div>
             </form>
         </div>
     </div>

@@ -18,22 +18,22 @@ class GiftController extends Controller
      */
     public function index(Request $request, Gift $gift)
     {
-        $keyword = $request->keyword;
         $genre = $request->genre;
+        $keyword = $request->keyword;
 
         $query = Gift::query();
+        if (!empty($genre)) {
+            $query->where('user_position', $genre);
+        }
         if (!empty($keyword)) {
             $query->where('title', 'LIKE', "%{$keyword}%")
                 ->orWhere('content', 'LIKE', "%{$keyword}%");
         }
-        if (!empty($genre)) {
-            $query->where('user_position', '==', $genre);
-        }
 
-        if (empty($keyword) && empty($genre)) {
+        if (empty($genre) && empty($keyword)) {
             $gifts = $gift->getOrderedGifts();
         } else {
-            $gifts = $query->get()->orderBy('created_at', 'DESC')->paginate(20);
+            $gifts = $query->orderBy('created_at', 'DESC')->paginate(20);
         }
 
         return view('/gift/index', compact('gifts', 'keyword', 'genre'));
