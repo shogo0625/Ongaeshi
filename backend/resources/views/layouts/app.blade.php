@@ -54,10 +54,19 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <span class="mt-3">{{ Auth::user()->name }}</span>
+                                    @if(Auth::user()->image_path === null)
+                                    <img class="rounded" src="{{ asset('images/user.png') }}" width="45" height="45">
+                                    @else
+                                    <img class="rounded" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}" width="30" height="30">
+                                    @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">マイページ</a>
+                                    <a class="dropdown-item" href="{{ route('anniversary.index') }}">恩返しリスト</a>
+                                    <a class="dropdown-item" href="{{ route('gift.index') }}">みんなのギフト投稿</a>
+                                    <a class="dropdown-item" href="{{ route('user.index') }}">ユーザー一覧</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -67,6 +76,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+
                                 </div>
                             </li>
                         @endguest
