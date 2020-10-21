@@ -35,13 +35,13 @@
                         </div>
                         <ul class="nav nav-tabs justify-content-center mt-2" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="gift-tab" data-toggle="tab" href="#gift" role="tab" aria-controls="gift" aria-selected="true">ギフト</a>
+                                <a class="nav-link active" id="gift-tab" data-toggle="tab" href="#gift" role="tab" aria-controls="gift" aria-selected="true">ギフト（{{ $own_gifts->count() }}）</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">フォロー</a>
+                                <a class="nav-link" id="following-tab" data-toggle="tab" href="#following" role="tab" aria-controls="following" aria-selected="false">フォロー（{{ $following_users->count() }}）</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="false">フォロワー</a>
+                                <a class="nav-link" id="follower-tab" data-toggle="tab" href="#follower" role="tab" aria-controls="follower" aria-selected="false">フォロワー（{{ $follower_users->count() }}）</a>
                             </li>
                             @if($user->id === Auth::id())
                             <li class="nav-item">
