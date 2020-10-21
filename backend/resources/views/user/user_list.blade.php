@@ -11,7 +11,7 @@
             </h5>
             @auth
             <div class="float-right mt-3">
-                @if(Auth::user()->is_following($a_user->id))
+                @if(Auth::user() && Auth::user()->is_following($a_user->id))
                 <form action="/user/{{ $a_user->id }}/unfollow" method="post" class="follow" id="{{ $a_user->id }}">
                     @csrf
                     @method("DELETE")
@@ -19,7 +19,7 @@
                     <input type="hidden" id="tab_name" name="tab_name" value="">
                     <button type="submit" class="btn btn-outline-danger">フォロー解除</button>
                 </form>
-                @elseif($a_user->id !== Auth::id())
+                @elseif(Auth::user() && $a_user->id !== Auth::id())
                 <form action="/user/{{ $a_user->id }}/follow" method="post" class="follow" id="{{ $a_user->id }}">
                     @csrf
                     <input type="hidden" id="user_page_id" name="user_page_id" value="{{ isset($user) ? $user->id : '' }}">

@@ -20,13 +20,13 @@
                             <p class="mt-4">{{ $user->about_me }}</p>
                             @if($user->id === Auth::id())
                             <a class="btn btn-sm btn-light mb-2" href="/user/{{ $user->id }}/edit"><i class="fas fa-edit"></i> ユーザー情報を編集</a>
-                            @elseif(Auth::user()->is_following($user->id))
+                            @elseif(Auth::user() && Auth::user()->is_following($user->id))
                             <form action="/user/{{ $user->id }}/unfollow" method="post">
                                 @csrf
                                 @method("DELETE")
                                 <button type="submit" class="btn btn-sm btn-outline-danger mb-2">フォロー解除</button>
                             </form>
-                            @else
+                            @elseif(Auth::user())
                             <form action="/user/{{ $user->id }}/follow" method="post">
                                 @csrf
                                 <button type="submit" class="btn btn-sm btn-primary mb-2">フォローする</button>

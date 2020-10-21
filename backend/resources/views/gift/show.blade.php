@@ -90,16 +90,18 @@
                         </div>
                     </div>
                 @endif
-                <div class="card">
-                    <form action="/gift/{{ $gift->id }}/gift_comment" method="POST">
-                        @csrf
-                        <div class="form-group mt-4 mx-4">
-                            <textarea class="form-control{{ $errors->has('comment') ? ' border-danger' : '' }}" id="comment" name="comment" rows="4">{{ old('comment') }}</textarea>
-                            <small class="form-text text-danger">{!! $errors->first('comment') !!}</small>
-                        </div>
-                        <input class="float-right btn btn-sm btn-outline-primary mx-4 mb-3" type="submit" value="コメントする">
-                    </form>
-                </div>
+                @auth
+                    <div class="card">
+                        <form action="/gift/{{ $gift->id }}/gift_comment" method="POST">
+                            @csrf
+                            <div class="form-group mt-4 mx-4">
+                                <textarea class="form-control{{ $errors->has('comment') ? ' border-danger' : '' }}" id="comment" name="comment" rows="4">{{ old('comment') }}</textarea>
+                                <small class="form-text text-danger">{!! $errors->first('comment') !!}</small>
+                            </div>
+                            <input class="float-right btn btn-sm btn-outline-primary mx-4 mb-3" type="submit" value="コメントする">
+                        </form>
+                    </div>
+                @endauth
                 <div class="mt-2">
                     <a class="btn btn-sm btn-primary float-right" href="/gift"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
                 </div>

@@ -21,20 +21,25 @@
             <div class="row">
                 <div class="offset-md-4 col-md-6 text-right">
                     <span class="mr-1"><i class="fas fa-comment" aria-hidden="true"></i> {{ $gift->gift_comments->count() }} コメント</span>
-                    @if($gift->is_liked_by(Auth::id()))
-                    <form style="display: inline" action="/gift/{{ $gift->id }}/unlike" method="post" class="like">
-                        @csrf
-                        @method("DELETE")
-                        <input type="hidden" id="tab_name" name="tab_name" value="liked">
-                        <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</button>
-                    </form>
-                    @else
-                    <form style="display: inline" action="/gift/{{ $gift->id }}/like" method="post" class="like">
-                        @csrf
-                        <input type="hidden" id="tab_name" name="tab_name" value="liked">
-                        <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</button>
-                    </form>
-                    @endif
+                    @auth
+                        @if($gift->is_liked_by(Auth::id()))
+                        <form style="display: inline" action="/gift/{{ $gift->id }}/unlike" method="post" class="like">
+                            @csrf
+                            @method("DELETE")
+                            <input type="hidden" id="tab_name" name="tab_name" value="liked">
+                            <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true" style="color: red;"></i> {{ $gift->likes->count() }} いいね</button>
+                        </form>
+                        @else
+                        <form style="display: inline" action="/gift/{{ $gift->id }}/like" method="post" class="like">
+                            @csrf
+                            <input type="hidden" id="tab_name" name="tab_name" value="liked">
+                            <button type="submit" class="btn btn-link mb-1"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</button>
+                        </form>
+                        @endif
+                    @endauth
+                    @guest
+                        <span class="mr-3"><i class="fas fa-heart" aria-hidden="true"></i> {{ $gift->likes->count() }} いいね</span>
+                    @endguest
                 </div>
                 <span class="mt-2">{{ $gift->created_at->format('Y/m/d H:m') }}</span>
             </div>
