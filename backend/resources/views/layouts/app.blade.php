@@ -35,8 +35,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav mr-auto ml-5">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{{ route('gift.index') }}">みんなのギフト投稿</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{{ route('user.index') }}">ユーザー一覧</a>                        </li>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -65,8 +70,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">マイページ</a>
                                     <a class="dropdown-item" href="{{ route('anniversary.index') }}">恩返しリスト</a>
-                                    <a class="dropdown-item" href="{{ route('gift.index') }}">みんなのギフト投稿</a>
-                                    <a class="dropdown-item" href="{{ route('user.index') }}">ユーザー一覧</a>
+                                    <a class="dropdown-item" href="{{ route('anniversary.create') }}">恩返し登録</a>
+                                    <a class="dropdown-item" href="{{ route('gift.create') }}">ギフト投稿</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
