@@ -61,9 +61,9 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <span class="mt-3">{{ Auth::user()->name }}</span>
                                     @if(Auth::user()->image_path === null)
-                                    <img class="rounded" src="{{ asset('images/user.png') }}" width="45" height="45">
+                                    <img class="rounded ml-1" src="{{ asset('images/user.png') }}" width="35" height="35">
                                     @else
-                                    <img class="rounded" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}" width="30" height="30">
+                                    <img class="rounded ml-1" src="{{ asset('storage/user_images/' . Auth::user()->image_path) }}" width="35" height="35">
                                     @endif
                                 </a>
 

@@ -66,6 +66,13 @@
                             </div>
                         </div>
                     </form>
+                    <div class="row mt-3 mr-2 float-right">
+                        <form style="display: inline" action="/user/{{ $user->id }}" method="post">
+                            @csrf
+                            @method("DELETE")
+                            <input class="btn btn-sm btn-outline-danger" type="submit" value="アカウントを削除" onclick='return confirm("一度アカウントを削除すると復元できなくなります。\nアカウントを削除してよろしいですか？")'>
+                        </form>
+                    </div>
                 </div>
                 </div>
             </div>

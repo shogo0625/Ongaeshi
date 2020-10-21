@@ -113,7 +113,10 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect('/')->with([
+            'message_success' => "アカウントは正常に削除されました。",
+        ]);
     }
 
     public function deleteImages($user_id)
