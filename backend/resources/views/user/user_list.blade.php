@@ -28,6 +28,7 @@
                 </form>
                 @endif
             </div>
+
             @endauth
         </li>
     @endforeach

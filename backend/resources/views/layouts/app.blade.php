@@ -35,17 +35,17 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto ml-5">
+                    <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a class="dropdown-item" href="{{ route('gift.index') }}">みんなのギフト投稿</a>
                         </li>
                         <li class="nav-item">
-                            <a class="dropdown-item" href="{{ route('user.index') }}">ユーザー一覧</a>                        </li>
+                            <a class="dropdown-item" href="{{ route('user.index') }}">ユーザー一覧</a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-4">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
