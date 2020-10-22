@@ -87,7 +87,7 @@ class User extends Authenticatable
             ->join('user_follow', 'user_follow.follow_id', '=', 'users.id')
             ->where('user_follow.user_id', $this->id)
             ->orderBy('user_follow.created_at', 'DESC')
-            ->paginate(10);
+            ->paginate(20);
     }
 
     public function getFollowers()
@@ -96,7 +96,7 @@ class User extends Authenticatable
             ->join('user_follow', 'user_follow.user_id', '=', 'users.id')
             ->where('user_follow.follow_id', $this->id)
             ->orderBy('user_follow.created_at', 'DESC')
-            ->paginate(10);
+            ->paginate(20);
     }
 
     /**

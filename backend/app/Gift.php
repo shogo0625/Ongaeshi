@@ -44,4 +44,13 @@ class Gift extends Model
     {
         return $this->orderBy('created_at', 'DESC')->paginate(20);
     }
+
+    public static function getGiftsForTimeline()
+    {
+        return Gift::select('gifts.*')
+            ->join('user_follow', 'user_follow.follow_id', '=', 'gifts.user_id')
+            ->where('user_follow.user_id', auth()->id())
+            ->orderBy('gifts.created_at', 'DESC')
+            ->paginate(20);
+    }
 }

@@ -21,6 +21,18 @@
                 <a class="btn btn-success btn-sm" href="/anniversary/create"><i class="fas fa-plus-circle"></i> 新しい恩返しリマインダーを登録</a>
                 <a class="btn btn-sm btn-primary float-right" href="/anniversary"><i class="fas fa-arrow-circle-up"></i> 一覧ページへ</a>
             </div>
+            <div class="card mt-4">
+                <div class="card-header text-center">タイムライン</div>
+
+                <div class="card-body">
+                    <div class="infinite-scroll">
+                        @include('gift.gift_list', ['gifts' => $gifts])
+                        <div class="mt-2">
+                            {{ $gifts->links("vendor/pagination/default") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
