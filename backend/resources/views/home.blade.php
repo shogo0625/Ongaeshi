@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-11">
@@ -36,4 +37,6 @@
         </div>
     </div>
 </div>
+@endauth
+{{-- aboutビュー --}}
 @endsection
